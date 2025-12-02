@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeKingdom - 个人博客</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500&family=Source+Code+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #0a0e17;
+            color: #e6edf3;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(41, 95, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(156, 76, 255, 0.05) 0%, transparent 50%);
+        }
+
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .welcome-text {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #e6edf3, #7ee787);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+        }
+
+        .welcome-text::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #7ee787, transparent);
+        }
+
+        .subtitle {
+            font-family: 'Source Code Pro', monospace;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: #8b949e;
+            margin-top: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.2em;
+            background-color: #7ee787;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .footer {
+            font-family: 'Source Code Pro', monospace;
+            width: 100%;
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #8b949e;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-top: 1px solid rgba(139, 148, 158, 0.1);
+        }
+
+        .blog-name {
+            color: #7ee787;
+            font-weight: 500;
+        }
+
+        .year {
+            color: #8b949e;
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1.5rem;
+            }
+            .welcome-text {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 背景装饰 -->
+    <div class="background"></div>
+
+    <!-- 主内容区 -->
+    <main class="main-content">
+        <h1 class="welcome-text fade-in">
+            欢迎访问我的博客
+        </h1>
+        
+        <div class="subtitle fade-in" style="animation-delay: 0.3s;">
+            探索 · 思考 · 创造<span class="typing-cursor"></span>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer fade-in" style="animation-delay: 0.8s;">
+        <div class="footer-content">
+            <span class="blog-name">CodeKingdom</span> 个人博客 · © <span class="year">2025</span>
+        </div>
+    </footer>
+
+    <script>
+        // 打字光标效果
+        document.addEventListener('DOMContentLoaded', function() {
+            const cursor = document.querySelector('.typing-cursor');
+            
+            // 简单模拟打字效果
+            setTimeout(() => {
+                cursor.style.animation = 'none';
+                setTimeout(() => {
+                    cursor.style.animation = 'blink 1s infinite';
+                }, 500);
+            }, 2000);
+            
+            // 更新年份
+            document.querySelector('.year').textContent = new Date().getFullYear();
+            
+            // 控制台欢迎信息
+            console.log('%c 🏰 欢迎来到 CodeKingdom ', 'background: linear-gradient(90deg, #0a0e17, #1a2332); color: #7ee787; padding: 8px 16px; border-radius: 4px; font-weight: bold;');
+            console.log('%c 博客正在建设中... ', 'color: #8b949e;');
+        });
+    </script>
+</body>
+</html>
